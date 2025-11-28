@@ -9,11 +9,13 @@ if [ ! -f "$INPUT_FILE" ]; then
     echo "Input file not found: $INPUT_FILE"
     exit 1
 fi
-docker pull ghcr.io/gitleaks/gitleaks:latest
+
 # Read each line from the input file and call process_line.sh
 while IFS= read -r line; do
     # Call process_line.sh with the line as an argument
+    ./script.sh -r "$line" -u https://hub.docker.com/
     export REPO_NAME=$line
+<<<<<<< HEAD
 	./script.sh -r "$line" -u https://hub.docker.com/
 	./scan.sh
 	cd $CURRENTDIR
@@ -23,8 +25,19 @@ while IFS= read -r line; do
 	docker run -v $CURRENTDIR"/archives-image/":/path ghcr.io/gitleaks/gitleaks:latest detect --no-git -v -s "/path" -f json -r "gitleaks"$REPO_NAME_STR".json"
 	rm -rf $CURRENTDIR"/archives-image/"
 	rm -rf $CURRENTDIR"/archives-image-tar/"
+=======
+>>>>>>> parent of e69e4cb (updates)
 done < "$INPUT_FILE"
 cd $CURRENTDIR
+<<<<<<< HEAD
 cat trufflehog_* > trufflehog.json
 python3 parser.py
+=======
+>>>>>>> parent of e69e4cb (updates)
 
+docker pull ghcr.io/gitleaks/gitleaks:latest
+docker run -v $CURRENTDIR"/archives-image/":/path   ghcr.io/gitleaks/gitleaks:latest detect  -v -s "/path" -f json -r /path/gitleaks.json
+cd $CURRENTDIR
+docker run -v  /$CURRENTDIR"/archives-image/":/path trufflesecurity/trufflehog:latest filesystem /path -j  > trufflehog.json
+cd $CURRENTDIR
+python3 parser.py
