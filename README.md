@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="klepto_small.jpg" alt="Klepto2 Logo" width="200" />
+  <img src="klepto_small.jpg" alt="Klepto2 Logo" width="400" />
   <h1>Klepto</h1>
   <p><strong>KLEPTO - A Docker Image Secrets Scanner</strong></p>
   <p>
@@ -48,9 +48,18 @@ Edit configuration:
 
 ---
 
-## 🖼 Example Workflow
-(Consider adding a workflow diagram here later)
+## 🖼 Workflow
 
+<div align="center">
+  <img src="workflow.png" alt="Klepto Workflow" width="300" />
+</div>
+
+Steps:
+1. Search Docker Hub
+2. Pull Image
+3. Extract Layers
+4. Scan for Secrets
+5. Generate Report
 ---
 
 ## 📌 Roadmap
